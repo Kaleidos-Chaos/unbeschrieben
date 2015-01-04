@@ -1,0 +1,24 @@
+<div id="main">
+  <header>
+    <div class="cover_img-wrap">
+      <div class="cover_img"></div>
+    </div>
+
+    <div class="cta">
+      <button
+        class="playpause majorlink"
+        ng-class="{
+          'icon-play': !epPlayer.playing,
+          'icon-pause': epPlayer.playing
+        }"
+        ng-click="epPlayer.playPause()"
+        title="play"
+      >{{epPlayer.playing ? 'Pause' : 'Play'}}</button>
+      <button class="majorlink download icon-arrow-down">Download</button>
+    </div>
+    <audio media-player="epPlayer" playlist="ep">
+    </audio>
+  </header>
+  <track ng-repeat="track in ep" data="track" player="epPlayer"></track>
+  <div class="bandfoto"></div>
+</div>

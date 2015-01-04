@@ -1,0 +1,17 @@
+<div class="track" >
+	<header>
+		<div ng-if="playing()">
+			<div class="overlay">
+				<div class="progress_bar buffered" ng-style="{width: loaded()}"></div>
+			</div>
+			<div class="overlay">
+				<div class="progress_bar played" ng-style="{width: played()}"></div>
+			</div>
+		</div>
+		<h3 class="majorlink" ng-class="{playing: playing()}" ng-click="toggle($event)">{{track.name}}</h3>
+	</header>
+	<div ng-if="open">
+		<ng-include src="track.view" scope="" onload=""></ng-include>
+	</div>
+
+</div>
