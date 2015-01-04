@@ -18,14 +18,14 @@ angular.module('unbeschriebenEpApp')
       link: function postLink(scope, element) {
 
         scope.i = ep.indexOf(scope.track);
-        scope.open = false;
+        scope.isOpen = false;
 
-        function seek($event) {
+        scope.seek = function($event) {
           var x = $event.x || $event.screenX;
           var rect = element[0].querySelector('.track').getClientRects()[0];
           var seekedTo = (x - rect.left) / (rect.right - rect.left);
           scope.player.seek(scope.player.duration * seekedTo);
-        }
+        };
 
         scope.loaded = function() {
           return (scope.player.loadPercent || 0) + '%';
@@ -35,32 +35,58 @@ angular.module('unbeschriebenEpApp')
           return ((scope.player.currentTime / scope.player.duration) || 0) * 100 + '%';
         };
 
+        scope.isCurrent = function() {
+          return scope.player.currentTrack === scope.i + 1;
+        };
+
         scope.playing = function() {
-          return scope.player.playing && scope.player.currentTrack === scope.i + 1;
+          return scope.player.playing && scope.isCurrent();
         };
 
         var once = scope.$watch(scope.playing, function(playing) {
           if (playing) {
-            scope.open = true;
+            scope.isOpen = true;
             once();
           }
         });
 
-        scope.toggle = function($event) {
-          if (!scope.open) {
-            if (!scope.player.playing) {
-              scope.player.play(scope.i);
-            }
-            scope.open = true;
+        scope.open = function() {
+          scope.isOpen = true;
+        };
+
+        scope.openPlayReset = function() {
+          var wasOpen = scope.isOpen;
+          scope.open();
+
+          if (!wasOpen && scope.player.playing) {
             return;
           }
 
           if (scope.playing()) {
-            seek($event);
+            scope.player.seek(-1);
           } else {
-            scope.player.play(scope.i);
+            if (scope.isCurrent()) {
+              scope.player.playPause();
+            } else {
+              scope.player.play(scope.i);
+            }
           }
         };
+
+        scope.getState = function() {
+          if (scope.playing()) {
+            return scope.STATE_PLAYING;
+          }
+          if (scope.isOpen) {
+            return scope.STATE_OPEN;
+          } else {
+            return scope.STATE_CLOSED;
+          }
+        };
+
+        scope.STATE_CLOSED = 0;
+        scope.STATE_OPEN = 1;
+        scope.STATE_PLAYING = 2;
       }
     };
   });

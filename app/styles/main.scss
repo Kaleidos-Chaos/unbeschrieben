@@ -46,31 +46,31 @@ body {
   margin: 0 auto;
 }
 
-.majorlink {
+.interactive {
   outline: none;
-  background: transparent;
-  border: none;
   color: $beige;
-  font-size: 3rem;
   text-shadow: 0px 0px 15px rgba(darken($beige, 60%), 0.4);
-  padding: 10px;
-  display: block;
-  margin: 0 auto;
-  font-weight: bold;
   cursor: pointer;
-  text-align: center;
   &:hover {
     color: darken($beige, 10%);
     text-shadow: 0px 0px 15px rgba($purple, .6);
   }
-  &:focus,
-  &.playing {
+  &:focus {
     color: $black;
     text-shadow: 0 0 50px rgba($beige, 0.3);
   }
-  &.playing {
-    cursor: default;
-  }
+}
+
+.majorlink {
+  @extend .interactive;
+  background: transparent;
+  border: none;
+  font-size: 3rem;
+  padding: 10px;
+  display: block;
+  margin: 0 auto;
+  font-weight: bold;
+  text-align: center;
 }
 
 
@@ -102,7 +102,7 @@ body {
   .playpause, .download {
     display: inline;
     border: none;
-    font-size: 2em;
+    font-size: 2rem;
     padding: 10px 1em;
     &::before {
       position: relative;
@@ -118,10 +118,37 @@ body {
 
   .track {
     h3 {
+      -webkit-font-smoothing: antialiased;
+      -moz-font-smoothing: antialiased;
+      -o-font-smoothing: antialiased;
+      line-height: 1;
       padding: .5rem 0;
+      &.playing {
+        color: $black;
+      }
+      &::before {
+        font-size: 2rem;
+        position: relative;
+        top: -.25rem;
+        left: -1rem;
+        margin-left: -2.1rem;
+      }
+      .title {
+        font-size: 3rem;
+        font-weight: bold;
+        font-family: 'Lato', sans-serif;
+      }
+    }
+    &.open {
+      margin-bottom: 1rem;
     }
   }
 
+  .progress_wrap {
+    height: 1rem;
+    outline: none;
+    overflow: hidden;
+  }
   .progress_bar {
     height: 5rem;
     &.buffered {

@@ -1,17 +1,27 @@
-<div class="track" >
+<div class="track" ng-class="{open: isOpen}">
 	<header>
-		<div ng-if="playing()">
-			<div class="overlay">
-				<div class="progress_bar buffered" ng-style="{width: loaded()}"></div>
-			</div>
-			<div class="overlay">
-				<div class="progress_bar played" ng-style="{width: played()}"></div>
+		<h3
+			ng-click="openPlayReset()"
+			class="majorlink icon-"
+			title="{{getState() > 0 ? getState() == 1 ? 'play' : 'zur&uuml;cksetzen' : '&ouml;ffnen'}}"
+			ng-class="{
+				playing: playing(),
+				'icon-play': isOpen && !playing(),
+				'icon-backward': isOpen && playing()
+			}"
+		><span class="title">{{track.name}}</span></h3>
+	</header>
+	<div ng-if="isOpen">
+		<div class="progress_wrap" ng-click="seek($event)">
+			<div ng-if="playing()">
+				<div class="overlay">
+					<div class="progress_bar buffered" ng-style="{width: loaded()}"></div>
+				</div>
+				<div class="overlay">
+					<div class="progress_bar played" ng-style="{width: played()}"></div>
+				</div>
 			</div>
 		</div>
-		<h3 class="majorlink" ng-class="{playing: playing()}" ng-click="toggle($event)">{{track.name}}</h3>
-	</header>
-	<div ng-if="open">
 		<ng-include src="track.view" scope="" onload=""></ng-include>
 	</div>
-
 </div>

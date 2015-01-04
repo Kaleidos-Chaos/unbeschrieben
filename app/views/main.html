@@ -16,9 +16,9 @@
       >{{epPlayer.playing ? 'Pause' : 'Play'}}</button>
       <button class="majorlink download icon-arrow-down">Download</button>
     </div>
-    <audio media-player="epPlayer" playlist="ep">
-    </audio>
   </header>
   <track ng-repeat="track in ep" data="track" player="epPlayer"></track>
   <div class="bandfoto"></div>
+  <audio media-player="epPlayer" playlist="ep">
+  </audio>
 </div>
