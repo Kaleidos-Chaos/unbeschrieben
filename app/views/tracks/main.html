@@ -1,18 +1,12 @@
 <div class="track" ng-class="{open: isOpen}">
 	<header>
 		<h3
-			ng-click="openPlayReset()"
+			ng-click="open()"
 			class="majorlink icon-"
-			title="{{getState() > 0 ? getState() == 1 ? 'play' : 'zur&uuml;cksetzen' : '&ouml;ffnen'}}"
-			ng-class="{
-				playing: playing(),
-				'icon-play': isOpen && !playing(),
-				'icon-backward': isOpen && playing()
-			}"
 		><span class="title">{{track.name}}</span></h3>
 	</header>
 	<div ng-if="isOpen">
-		<div class="progress_wrap" ng-click="seek($event)">
+		<div class="progress_wrap" ng-click="seek($event)" tabindex="-1">
 			<div ng-if="playing()">
 				<div class="overlay">
 					<div class="progress_bar buffered" ng-style="{width: loaded()}"></div>
@@ -22,6 +16,9 @@
 				</div>
 			</div>
 		</div>
-		<ng-include src="track.view" scope="" onload=""></ng-include>
+    <div class="trackview">
+		  <ng-include src="track.view"></ng-include>
+      <br class="clear" />
+    </div>
 	</div>
 </div>

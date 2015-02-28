@@ -11,4 +11,9 @@ angular.module('unbeschriebenEpApp')
   .controller('MainCtrl', function ($scope, ep) {
     $scope.ep = ep;
 
+    $scope.playIfPause = function() {
+      if (!$scope.epPlayer.playing) {
+        $scope.epPlayer.play();
+      }
+    };
   });

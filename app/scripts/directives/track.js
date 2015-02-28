@@ -40,12 +40,12 @@ angular.module('unbeschriebenEpApp')
         };
 
         scope.playing = function() {
-          return scope.player.playing && scope.isCurrent();
+          return (scope.player.playing || scope.player.seeking) && scope.isCurrent();
         };
 
         var once = scope.$watch(scope.playing, function(playing) {
           if (playing) {
-            scope.isOpen = true;
+            scope.open();
             once();
           }
         });
@@ -54,22 +54,11 @@ angular.module('unbeschriebenEpApp')
           scope.isOpen = true;
         };
 
-        scope.openPlayReset = function() {
-          var wasOpen = scope.isOpen;
-          scope.open();
-
-          if (!wasOpen && scope.player.playing) {
-            return;
-          }
-
-          if (scope.playing()) {
-            scope.player.seek(-1);
+        scope.playPause = function() {
+          if (scope.isCurrent()) {
+            scope.player.playPause();
           } else {
-            if (scope.isCurrent()) {
-              scope.player.playPause();
-            } else {
-              scope.player.play(scope.i);
-            }
+            scope.player.play(scope.i);
           }
         };
 

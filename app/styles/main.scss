@@ -4,13 +4,15 @@
 @import "../fonts/icomoon/style";
 
 // color
-$black: #000;
 $red: red;
 $beige: #F8D7B6;
 $hightlight: #FAF2D8;
-$brown: #442224;
+$brown: #854242;
 $purple: #4A2037;
 $plum: #C98A76;
+$black_blue: #06003B;
+$black_purp: #403162;
+$black: $black_blue;
 
 
 // color roles
@@ -29,10 +31,9 @@ $background_played: rgba($beige, .8);
 /* Space out content a bit */
 body {
   font-family: 'Lato', sans-serif;
-  background: black url('../images/bg.jpg') center center no-repeat fixed;
+  background: $black url('../images/bg.jpg') center center no-repeat fixed;
   background-size: cover;
   padding-top: 20px;
-  padding-bottom: 20px;
   color: #fff;
   margin: 0;
 }
@@ -61,6 +62,7 @@ body {
   }
 }
 
+
 .majorlink {
   @extend .interactive;
   background: transparent;
@@ -73,6 +75,11 @@ body {
   text-align: center;
 }
 
+.ondark {
+  &:focus {
+    text-shadow: 0px 0px 10px $beige;
+  }
+}
 
   .overlay {
     width: 100%;
@@ -92,6 +99,7 @@ body {
   .cover_img {
     background: url('../images/cover.jpg');
     background-size: cover;
+    outline: none;
     width: 500px;
     height: 500px;
     box-shadow: 0px 0px 50px rgba(0,0,0,0.4), 0 0 100px rgba($beige, 0.1);
@@ -99,24 +107,68 @@ body {
     max-width: 100%;
   }
 
-  .playpause, .download {
-    display: inline;
+  .miniplayer {
+    @extend .ondark;
+    background: transparent;
     border: none;
-    font-size: 2rem;
-    padding: 10px 1em;
-    &::before {
-      position: relative;
-      top: .05em;
-      left: -.5em;
-    }
+    display: block;
+    font-size: 1.5rem;
+    position: relative;
+    left: -.8rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
   }
 
   .cta {
+    height: 4em;
+    .iconwrap, .majorlink {
+      transition: all 0.1s ease-in-out;
+      padding: 10px 1em;
+    }
+    .majorlink {
+      display: inline;
+      border: none;
+      font-size: 2rem;
+      &::before {
+        position: relative;
+        top: .05em;
+        left: -.5em;
+      }
+    }
+    [sticky] {
+      transition: background 0.5s ease-in-out;
+      background: transparent;
+    }
+    .sticky {
+      z-index: 1000;
+      background: $black_blue;
+      .majorlink {
+        @extend .ondark;
+        font-size: 1em;
+        &::before {
+          top: .09em;
+          left: -.2em;
+        }
+      }
+      .iconwrap, .majorlink {
+        padding: 5px .3em 10px;
+      }
+
+    }
+    .majorlink.icon {
+      padding: 0;
+    }
     text-align: center;
     margin: 1em 0 5em;
   }
 
   .track {
+    &:hover, &.open {
+      background: $background_buffer;
+    }
+    &.open {
+      border-bottom: 1rem solid transparent;
+    }
     h3 {
       -webkit-font-smoothing: antialiased;
       -moz-font-smoothing: antialiased;
@@ -139,9 +191,6 @@ body {
         font-family: 'Lato', sans-serif;
       }
     }
-    &.open {
-      margin-bottom: 1rem;
-    }
   }
 
   .progress_wrap {
@@ -160,14 +209,14 @@ body {
   }
 
   .trackview {
-    background: black;
+    background: $black_blue;
     footer {
-      text-align: center;
+      text-align: left;
       font-family: 'Alegreya', serif;
       font-style: italic;
       font-size: .8rem;
-      color: $brown;
-      padding: 2rem;
+      color: $black_purp;
+      padding: 0 0 1rem;
     }
   }
 
@@ -175,7 +224,7 @@ body {
     font-family: 'Alegreya', serif;
     color: $beige;
     width: 37%;
-    margin: 6% 6% 0;
+    margin: 3% 6%;
     float: right;
     .initial {
       color: $plum;
@@ -190,12 +239,13 @@ body {
   }
 
 footer.main {
-  background: $background_main;
+  color: $beige;
+  background: rgba($background_main, 0.9);
   padding: 1rem 1rem 1rem 4rem;
   p {
-    max-width: 400px;
+    max-width: 410px;
   }
-  margin: 5em 0;
+  margin: 30em 0 0;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */

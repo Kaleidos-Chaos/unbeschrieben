@@ -13,7 +13,8 @@ angular
     'ngAria',
     'mediaPlayer',
     'ngMessages',
-    'ngRoute'
+    'ngRoute',
+    'sticky'
   ])
   .config(function ($routeProvider) {
     $routeProvider
