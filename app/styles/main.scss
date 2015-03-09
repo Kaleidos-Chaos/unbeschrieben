@@ -13,7 +13,7 @@ $plum: #C98A76;
 $black_blue: #06003B;
 $black_purp: #403162;
 $black: $black_blue;
-
+$red: #9d4a54;
 
 // color roles
 $background_main: $black;
@@ -47,7 +47,7 @@ body {
   margin: 0 auto;
 }
 
-.interactive {
+a, .interactive {
   outline: none;
   color: $beige;
   text-shadow: 0px 0px 15px rgba(darken($beige, 60%), 0.4);
@@ -57,8 +57,8 @@ body {
     text-shadow: 0px 0px 15px rgba($purple, .6);
   }
   &:focus {
-    color: $black;
-    text-shadow: 0 0 50px rgba($beige, 0.3);
+    color: $red;
+    text-shadow: 0 0 2px rgba($black, 0.6);
   }
 }
 
@@ -75,11 +75,6 @@ body {
   text-align: center;
 }
 
-.ondark {
-  &:focus {
-    text-shadow: 0px 0px 10px $beige;
-  }
-}
 
   .overlay {
     width: 100%;
@@ -89,26 +84,25 @@ body {
   }
 
   .cover_img-wrap {
-    max-width: 500px;
+    max-width: 550px;
     margin: 6rem auto;
     outline: none;
     border: 2px solid transparent;
     border-radius: 4px;
+    text-align: center;
   }
 
   .cover_img {
-    background: url('../images/cover.jpg');
-    background-size: cover;
     outline: none;
-    width: 500px;
-    height: 500px;
+    width: 90%;
+    height: auto;
     box-shadow: 0px 0px 50px rgba(0,0,0,0.4), 0 0 100px rgba($beige, 0.1);
     border-radius: 2px;
     max-width: 100%;
   }
 
   .miniplayer {
-    @extend .ondark;
+    // @extend .ondark;
     background: transparent;
     border: none;
     display: block;
@@ -143,7 +137,7 @@ body {
       z-index: 1000;
       background: $black_blue;
       .majorlink {
-        @extend .ondark;
+        // @extend .ondark;
         font-size: 1em;
         &::before {
           top: .09em;
@@ -163,11 +157,13 @@ body {
   }
 
   .track {
-    &:hover, &.open {
-      background: $background_buffer;
-    }
     &.open {
-      border-bottom: 1rem solid transparent;
+      margin-bottom: 1rem;
+      h3:hover {
+        background: transparent;
+        cursor: default;
+
+      }
     }
     h3 {
       -webkit-font-smoothing: antialiased;
@@ -185,12 +181,20 @@ body {
         left: -1rem;
         margin-left: -2.1rem;
       }
+      &:hover {
+        background: $background_buffer;
+      }
       .title {
         font-size: 3rem;
         font-weight: bold;
         font-family: 'Lato', sans-serif;
       }
     }
+  }
+
+  .track-image {
+    float: left;
+    width: 50%;
   }
 
   .progress_wrap {
@@ -244,75 +248,19 @@ footer.main {
   padding: 1rem 1rem 1rem 4rem;
   p {
     max-width: 410px;
+    margin: 1rem auto;
   }
   margin: 30em 0 0;
 }
 
-/* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
-.marketing,
-.footer {
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
-/* Custom page header */
-.header {
-  /* Make the masthead heading the same height as the navigation */
-  h3 {
-    margin-top: 0;
-    margin-bottom: 0;
-    line-height: 40px;
-    padding-bottom: 19px;
+@media screen and (max-width: 768px) {
+  .track-image {
+    float: none;
+    width: 100%;
+  }
+  .lyrics {
+    width: 88%;
+    float: none;
   }
 }
 
-/* Custom page footer */
-.footer {
-  padding-top: 19px;
-  color: #777;
-}
-
-.container-narrow > hr {
-  margin: 30px 0;
-}
-
-/* Main marketing message and sign up button */
-.jumbotron {
-  text-align: center;
-
-  .btn {
-    font-size: 21px;
-    padding: 14px 24px;
-  }
-}
-
-/* Supporting marketing content */
-.marketing {
-  margin: 40px 0;
-
-  p + h4 {
-    margin-top: 28px;
-  }
-}
-
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-
-
-  /* Remove the padding we set earlier */
-  .header,
-  .marketing,
-  .footer {
-    padding-left: 0;
-    padding-right: 0;
-  }
-  /* Space out the masthead */
-  .header {
-    margin-bottom: 30px;
-  }
-  /* Remove the bottom border on the jumbotron for visual effect */
-  .jumbotron {
-    border-bottom: 0;
-  }
-}

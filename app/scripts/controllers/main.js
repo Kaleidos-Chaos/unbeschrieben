@@ -16,4 +16,7 @@ angular.module('unbeschriebenEpApp')
         $scope.epPlayer.play();
       }
     };
+
+    var $cover = window.jQuery('.cover_img');
+
   });

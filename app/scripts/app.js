@@ -14,9 +14,11 @@ angular
     'mediaPlayer',
     'ngMessages',
     'ngRoute',
-    'sticky'
+    'sticky',
+    'cloudinary'
   ])
   .config(function ($routeProvider) {
+    window.jQuery.cloudinary.config('cloud_name', 'xiphe');
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
