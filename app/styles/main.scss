@@ -31,7 +31,10 @@ $background_played: rgba($beige, .8);
 /* Space out content a bit */
 body {
   font-family: 'Lato', sans-serif;
-  background: $black url('../images/bg.jpg') center center no-repeat fixed;
+  background-color: $black;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   background-size: cover;
   padding-top: 20px;
   color: #fff;
@@ -193,6 +196,7 @@ a, .interactive {
   }
 
   .track-image {
+    position: relative;
     float: left;
     width: 50%;
   }

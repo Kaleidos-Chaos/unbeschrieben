@@ -14,11 +14,9 @@ angular
     'mediaPlayer',
     'ngMessages',
     'ngRoute',
-    'sticky',
-    'cloudinary'
+    'sticky'
   ])
   .config(function ($routeProvider) {
-    window.jQuery.cloudinary.config('cloud_name', 'xiphe');
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -31,4 +29,12 @@ angular
       .otherwise({
         redirectTo: '/'
       });
+  })
+  .run(function($rootScope) {
+    $rootScope.getBackground = function() {
+      return {
+        'background-image': 'url("http://res.cloudinary.com/xiphe/image/upload/w_' +
+        Math.round(window.innerWidth / 100) * 100 + ',h_' + Math.round(window.innerHeight / 100) * 100 + ',c_fill,q_80/bg_xrqytx.jpg")'
+      };
+    };
   });

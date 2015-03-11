@@ -17,6 +17,11 @@ angular.module('unbeschriebenEpApp')
       }
     };
 
-    var $cover = window.jQuery('.cover_img');
+    var cover = document.getElementsByClassName('cover_img')[0];
+
+    $scope.getCoverWidth = function() {
+      return Math.round(cover.offsetWidth / 50) * 50;
+    };
+
 
   });
