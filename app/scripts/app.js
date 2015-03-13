@@ -34,7 +34,7 @@ angular
     $rootScope.getBackground = function() {
       return {
         'background-image': 'url("http://res.cloudinary.com/xiphe/image/upload/w_' +
-        Math.round(window.innerWidth / 100) * 100 + ',h_' + Math.round(window.innerHeight / 100) * 100 + ',c_fill,q_80/bg_xrqytx.jpg")'
+        Math.ceil(window.innerWidth / 100) * 100 + ',h_' + Math.ceil(window.innerHeight / 100) * 100 + ',c_fill,q_80/bg_xrqytx.jpg")'
       };
     };
   });

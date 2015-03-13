@@ -20,7 +20,7 @@ angular.module('unbeschriebenEpApp')
     var cover = document.getElementsByClassName('cover_img')[0];
 
     $scope.getCoverWidth = function() {
-      return Math.round(cover.offsetWidth / 50) * 50;
+      return Math.ceil(cover.offsetWidth / 50) * 50;
     };
 
 
