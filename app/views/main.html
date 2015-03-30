@@ -19,10 +19,13 @@
           ng-click="epPlayer.playPause()"
           title="play"
         ><span class="label">{{epPlayer.playing ? 'Pause' : 'Play'}}</span></button>
-        <button class="majorlink download icon-arrow-down"><span class="label">Download</span></button>
+        <button class="majorlink download icon-arrow-down" ng-click="download=!download"><span class="label">Download</span></button>
       </div>
     </div>
   </header>
+  <div ng-if="download">
+    <ng-include src="'views/download.html'"></ng-include>
+  </div>
   <track ng-repeat="track in ep" data="track" player="epPlayer"></track>
   <div class="bandfoto"></div>
   <audio media-player="epPlayer" playlist="ep">

@@ -37,4 +37,15 @@ angular
         Math.ceil(window.innerWidth / 100) * 100 + ',h_' + Math.ceil(window.innerHeight / 100) * 100 + ',c_fill,q_80/bg_xrqytx.jpg")'
       };
     };
+    $rootScope.getFooterBg = function() {
+      var footer = document.getElementById('footer');
+      if (!footer) {
+        return false;
+      }
+
+      return {
+        'background-image': 'url("http://res.cloudinary.com/xiphe/image/upload/w_' +
+        Math.ceil(footer.offsetWidth / 100) * 100 + ',h_' + Math.ceil(footer.offsetHeight / 100) * 100 + ',c_fill,q_80/true_n7lfap.jpg")'
+      };
+    };
   });
