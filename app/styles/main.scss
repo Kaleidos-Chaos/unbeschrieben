@@ -175,6 +175,17 @@ a, .interactive {
         color: $hightlight_red;
       }
     }
+    .times {
+      height: 0;
+      font-size: 13px;
+      color: $brown;
+      span {
+        padding: 0 0.3em;
+      }
+      .duration {
+        float: right;
+      }
+    }
     h3 {
       -webkit-font-smoothing: antialiased;
       -moz-font-smoothing: antialiased;

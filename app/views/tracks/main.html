@@ -1,4 +1,4 @@
-<div class="track" ng-class="{open: isOpen, playing: playing()}">
+<div class="track" ng-class="{open: isOpen, playing: playing}">
 	<header>
 		<h3
 			ng-click="open()"
@@ -7,13 +7,17 @@
 	</header>
 	<div ng-if="isOpen">
 		<div class="progress_wrap" ng-click="seek($event)" tabindex="-1">
-			<div ng-if="playing()">
-				<div class="overlay">
-					<div class="progress_bar buffered" ng-style="{width: loaded()}"></div>
-				</div>
-				<div class="overlay">
-					<div class="progress_bar played" ng-style="{width: played()}"></div>
-				</div>
+			<div ng-if="playing">
+        <div class="times">
+          <span class="time">{{player.formatTime}}</span>
+          <span class="duration">{{player.formatDuration}}</span>
+        </div>
+        <div class="overlay">
+          <div class="progress_bar buffered" ng-style="{width: loaded()}"></div>
+        </div>
+        <div class="overlay">
+          <div class="progress_bar played" ng-style="{width: played()}"></div>
+        </div>
 			</div>
 		</div>
     <div class="trackview">

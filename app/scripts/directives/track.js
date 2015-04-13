@@ -7,7 +7,7 @@
  * # track
  */
 angular.module('unbeschriebenEpApp')
-  .directive('track', function (ep) {
+  .directive('track', function (ep, $route, $routeParams) {
     return {
       templateUrl: 'views/tracks/main.html',
       scope: {
@@ -19,6 +19,23 @@ angular.module('unbeschriebenEpApp')
 
         scope.i = ep.indexOf(scope.track);
         scope.isOpen = false;
+        scope.track.slug = scope.slug = scope.track.name.toLowerCase()
+          .replace(/ /g,'-')
+          .replace(/[^\w-]+/g,'');
+
+        scope.playing = false;
+
+        scope.player.on('play', function() {
+          if (!scope.isCurrent()) {
+            scope.playing = false;
+            return;
+          }
+          scope.playing = true;
+        });
+
+        scope.player.on('pause', function() {
+          scope.playing = false;
+        });
 
         scope.seek = function($event) {
           var x = $event.x || $event.screenX;
@@ -39,14 +56,11 @@ angular.module('unbeschriebenEpApp')
           return scope.player.currentTrack === scope.i + 1;
         };
 
-        scope.playing = function() {
-          return (scope.player.playing || scope.player.seeking) && scope.isCurrent();
-        };
-
-        var once = scope.$watch(scope.playing, function(playing) {
+        scope.$watch('playing', function(playing) {
           if (playing) {
-            scope.open();
-            once();
+            $route.updateParams({play: scope.slug});
+          } else if (!playing && scope.isCurrent() && scope.player.loadPercent > 0) {
+            $route.updateParams({play: undefined});
           }
         });
 
@@ -63,7 +77,7 @@ angular.module('unbeschriebenEpApp')
         };
 
         scope.getState = function() {
-          if (scope.playing()) {
+          if (scope.playing) {
             return scope.STATE_PLAYING;
           }
           if (scope.isOpen) {
@@ -76,6 +90,15 @@ angular.module('unbeschriebenEpApp')
         scope.STATE_CLOSED = 0;
         scope.STATE_OPEN = 1;
         scope.STATE_PLAYING = 2;
+
+        scope.$watch(function() { return $routeParams.play; }, function(slug) {
+          if (slug === scope.slug) {
+            scope.open();
+            if (!scope.playing) {
+              scope.playPause();
+            }
+          }
+        });
       }
     };
   });
