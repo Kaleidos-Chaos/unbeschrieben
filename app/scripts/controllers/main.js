@@ -8,8 +8,17 @@
  * Controller of the unbeschriebenEpApp
  */
 angular.module('unbeschriebenEpApp')
-  .controller('MainCtrl', function ($scope, ep) {
+  .controller('MainCtrl', function ($scope, ep, $compile) {
     $scope.ep = ep;
+
+    $scope.applySticky = function() {
+      var $sticky = angular.element(document.getElementById('become-sticky'));
+      $sticky.attr({
+        sticky: true,
+        'sticky-class': 'sticky'
+      });
+      $compile($sticky)($scope);
+    };
 
     $scope.playIfPause = function() {
       if (!$scope.epPlayer.playing) {

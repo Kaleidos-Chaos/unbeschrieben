@@ -4,9 +4,9 @@
 @import "../fonts/icomoon/style";
 
 // color
-$red: red;
 $beige: #F8D7B6;
 $hightlight: #FAF2D8;
+$hightlight_red: #AF284C;
 $brown: #854242;
 $purple: #4A2037;
 $plum: #C98A76;
@@ -161,11 +161,18 @@ a, .interactive {
 
   .track {
     &.open {
+
       margin-bottom: 1rem;
-      h3:hover {
+      h3, h3:hover {
+        color: $beige;
         background: transparent;
         cursor: default;
-
+        text-shadow: 0px 0px 15px rgba(darken($beige, 60%), 0.4);
+      }
+    }
+    &.playing {
+      h3, h3:hover {
+        color: $hightlight_red;
       }
     }
     h3 {
@@ -174,9 +181,7 @@ a, .interactive {
       -o-font-smoothing: antialiased;
       line-height: 1;
       padding: .5rem 0;
-      &.playing {
-        color: $black;
-      }
+
       &::before {
         font-size: 2rem;
         position: relative;
@@ -250,7 +255,9 @@ footer.main {
   color: $black_blue;
   text-shadow: 0 0 5px rgba($beige, 0.2);
   background: $beige;
-  padding: 1rem 2rem;
+  background-attachment: fixed;
+  padding: 2rem;
+  box-shadow: 0 0 150px $brown inset, 0 0 50px rgba($black_blue, 0.5);
   p {
     max-width: 410px;
     margin: 1rem;

@@ -1,11 +1,11 @@
 <div id="main">
   <header>
     <div class="cover_img-wrap">
-      <img class="cover_img" tabindex="-1" ng-click="playIfPause()" ng-src="http://res.cloudinary.com/xiphe/image/upload/w_{{getCoverWidth()}},q_80/cover_p20ckk.jpg"/>
+      <img image-onload="applySticky()" class="cover_img" tabindex="-1" ng-click="playIfPause()" ng-src="http://res.cloudinary.com/xiphe/image/upload/w_{{getCoverWidth()}},q_80/cover_p20ckk.jpg"/>
     </div>
 
     <div class="cta">
-      <div sticky sticky-class="sticky">
+      <div id="become-sticky">
         <span class="iconwrap">
           <button class="icon-backward majorlink icon" ng-click="epPlayer.prev()"></button>
           <button class="icon-forward majorlink icon" ng-click="epPlayer.next()"></button>
