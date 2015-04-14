@@ -78,6 +78,16 @@ a, .interactive {
   text-align: center;
 }
 
+  .download-dialog {
+    background: $black_blue;
+    color: $beige;
+    padding: 2em 1em;
+    margin-bottom: 5em;
+    h1, h2, h3, p {
+      margin: 1em auto;
+      max-width: 600px;
+    }
+  }
 
   .overlay {
     width: 100%;
@@ -138,7 +148,7 @@ a, .interactive {
     }
     .sticky {
       z-index: 1000;
-      background: $black_blue;
+      background: rgba($black_blue, 1);
       .majorlink {
         // @extend .ondark;
         font-size: 1em;

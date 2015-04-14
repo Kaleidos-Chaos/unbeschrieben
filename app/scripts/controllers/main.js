@@ -8,43 +8,36 @@
  * Controller of the unbeschriebenEpApp
  */
 angular.module('unbeschriebenEpApp')
-  .controller('MainCtrl', function ($scope, ep, $compile, $route, $routeParams, $timeout) {
+  .controller('MainCtrl', function ($scope, ep, $compile, $timeout) {
     $scope.ep = ep;
+    $scope.download = false;
 
-    var $sticky = angular.element(document.getElementById('become-sticky'));
     $scope.applySticky = function() {
+      var $sticky = angular.element(document.getElementById('become-sticky'));
       $sticky.attr({
         sticky: true,
         'sticky-class': 'sticky'
-      });
+      }).html('<ng-include src="\'views/cta.html\'"></ng-include>');
+
       $compile($sticky)($scope);
     };
+
+    angular.element(document).on('click', function(event) {
+      [event.target, event.target.parentNode].forEach(function(el) {
+        var type = el.tagName.toLowerCase();
+        if (['a', 'button'].indexOf(type) !== -1) {
+          $timeout(function() {
+            el.blur();
+          }, 150);
+        }
+      });
+    });
 
     $scope.playIfPause = function() {
       if (!$scope.epPlayer.playing) {
         $scope.epPlayer.play();
       }
     };
-
-    function debounce(fn, delay) {
-      var timer = null;
-      return function () {
-        var context = this, args = arguments;
-        $timeout.cancel(timer);
-        timer = $timeout(function () {
-          fn.apply(context, args);
-        }, delay);
-      };
-    }
-
-    $scope.prev = debounce(function() {
-      $scope.epPlayer.prev();
-    }, 100);
-
-    $scope.next = debounce(function() {
-      $scope.epPlayer.next();
-    }, 100);
-
 
     var cover = document.getElementsByClassName('cover_img')[0];
 

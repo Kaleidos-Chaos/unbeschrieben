@@ -4,26 +4,9 @@
       <img image-onload="applySticky()" class="cover_img" tabindex="-1" ng-click="playIfPause()" ng-src="http://res.cloudinary.com/xiphe/image/upload/w_{{getCoverWidth()}},q_80/cover_p20ckk.jpg"/>
     </div>
 
-    <div class="cta">
-      <div id="become-sticky">
-        <span class="iconwrap">
-          <button class="icon-backward majorlink icon" ng-click="prev()"></button>
-          <button class="icon-forward majorlink icon" ng-click="next()"></button>
-        </span>
-        <button
-          class="playpause majorlink"
-          ng-class="{
-            'icon-play': !epPlayer.playing,
-            'icon-pause': epPlayer.playing
-          }"
-          ng-click="epPlayer.playPause()"
-          title="play"
-        ><span class="label">{{epPlayer.playing ? 'Pause' : 'Play'}}</span></button>
-        <button class="majorlink download icon-arrow-down" ng-click="download=!download"><span class="label">Download</span></button>
-      </div>
-    </div>
+    <div class="cta"><div id="become-sticky"></div></div>
   </header>
-  <div ng-if="download">
+  <div ng-if="download" class="download-dialog">
     <ng-include src="'views/download.html'"></ng-include>
   </div>
   <track ng-repeat="track in ep" data="track" player="epPlayer"></track>
