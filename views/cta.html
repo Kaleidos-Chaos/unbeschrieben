@@ -1,0 +1,4 @@
+<div> <span class="iconwrap"> <button class="icon-backward majorlink icon" ng-click="epPlayer.prev()"></button> <button class="icon-forward majorlink icon" ng-click="epPlayer.next()"></button> </span> <button class="playpause majorlink" ng-class="{
+      'icon-play': !epPlayer.playing,
+      'icon-pause': epPlayer.playing
+    }" ng-click="epPlayer.playPause()" title="play"><span class="label">{{epPlayer.playing ? 'Pause' : 'Play&nbsp;'}}</span></button> <button class="majorlink download icon-arrow-down" ng-click="$parent.download=!$parent.download"><span class="label">Download</span></button> <div></div></div>
