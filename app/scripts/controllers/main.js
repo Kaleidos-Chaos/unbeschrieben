@@ -11,6 +11,9 @@ angular.module('unbeschriebenEpApp')
   .controller('MainCtrl', function ($scope, ep, $compile, $timeout, $route, $routeParams) {
     $scope.ep = ep;
     $scope.download = false;
+    $scope.pw = {
+      text: ''
+    };
 
     if ($routeParams.download) {
       $scope.download = true;
@@ -34,6 +37,7 @@ angular.module('unbeschriebenEpApp')
 
     angular.element(document).on('click', function(event) {
       [event.target, event.target.parentNode].forEach(function(el) {
+        if (!el.tagName) { return; }
         var type = el.tagName.toLowerCase();
         if (['a', 'button'].indexOf(type) !== -1) {
           $timeout(function() {
@@ -49,11 +53,12 @@ angular.module('unbeschriebenEpApp')
       }
     };
 
-    var cover = document.getElementsByClassName('cover_img')[0];
-
     $scope.getCoverWidth = function() {
+      var cover = document.getElementsByClassName('cover_img')[0];
       return Math.ceil(cover.offsetWidth / 50) * 50;
     };
 
-
+    $scope.validPw = function() {
+      return $scope.pw.text === 'ein bisschen weiter';
+    };
   });
