@@ -28,6 +28,9 @@ $background_played: rgba($beige, .8);
   padding: 0.2em 0;
 }
 
+.success {
+  color: $hightlight_red;
+}
 /* Space out content a bit */
 body {
   font-family: 'Lato', sans-serif;
@@ -83,10 +86,32 @@ a, .interactive {
     color: $beige;
     padding: 2em 1em;
     margin-bottom: 5em;
-    h1, h2, h3, p {
-      margin: 1em auto;
-      max-width: 600px;
+    input, button {
+      outline: none;
+      background: transparent;
+      border: 2px solid $beige;
+      color: $beige;
+      padding: 5px;
+      border-radius: 2px;
+      margin-right: 5px;
+      font-family: Lato, sans-serif;
+      font-size: 1rem;
+      &:hover, &:focus, &:active {
+        border-color: $red;
+      }
+      &.paypal {
+        background: $beige;
+      }
     }
+  }
+  .download-inner {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .download-column {
+    width: 46%;
+    margin-right: 4%;
+    float: left;
   }
 
   .overlay {
@@ -305,6 +330,11 @@ footer.main {
   }
   .lyrics {
     width: 88%;
+    float: none;
+  }
+  .download-column {
+    width: 100%;
+    margin: 0;
     float: none;
   }
 }

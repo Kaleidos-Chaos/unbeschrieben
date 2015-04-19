@@ -8,9 +8,19 @@
  * Controller of the unbeschriebenEpApp
  */
 angular.module('unbeschriebenEpApp')
-  .controller('MainCtrl', function ($scope, ep, $compile, $timeout) {
+  .controller('MainCtrl', function ($scope, ep, $compile, $timeout, $route, $routeParams) {
     $scope.ep = ep;
     $scope.download = false;
+
+    if ($routeParams.download) {
+      $scope.download = true;
+    }
+
+    $scope.$watch('download', function(is) {
+      $route.updateParams({
+        download: is ? 'show' : undefined
+      });
+    });
 
     $scope.applySticky = function() {
       var $sticky = angular.element(document.getElementById('become-sticky'));
