@@ -318,7 +318,7 @@ a, .interactive {
 footer.main {
   color: $black_blue;
   text-shadow: 0 0 5px rgba($beige, 0.2);
-  background: $beige;
+  background: $beige center center no-repeat;
   background-attachment: fixed;
   padding: 2rem;
   box-shadow: 0 0 150px $brown inset, 0 0 50px rgba($black_blue, 0.5);
