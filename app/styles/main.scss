@@ -278,10 +278,35 @@ a, .interactive {
   .progress_bar {
     height: 5rem;
     &.buffered {
+      transition: width 2s, background-image 2s;
       background-color: $background_buffer;
+      &.loading {
+        min-width: 30px;
+        background-image: linear-gradient(
+          -45deg,
+          rgba($beige, 0.1) 20%,
+          transparent 20%,
+          transparent 50%,
+          rgba($beige, 0.1) 50%,
+          rgba($beige, 0.1) 70%,
+          transparent 70%,
+          transparent
+        );
+        background-size: 10px 10px;
+        animation: move 1s linear infinite;
+      }
     }
     &.played {
       background-color: $background_played;
+    }
+  }
+
+  @keyframes move {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 10px 10px;
     }
   }
 

@@ -11,7 +11,7 @@
 angular
   .module('unbeschriebenEpApp', [
     'ngAria',
-    'mediaPlayer',
+    'ngAudio',
     'ngRoute',
     'sticky'
   ])

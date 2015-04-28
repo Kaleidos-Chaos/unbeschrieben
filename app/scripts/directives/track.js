@@ -17,49 +17,38 @@ angular.module('unbeschriebenEpApp')
       restrict: 'E',
       link: function postLink(scope, element) {
 
-        scope.i = ep.indexOf(scope.track);
+        scope.i = ep.playlist.indexOf(scope.track);
+
         scope.isOpen = false;
         scope.track.slug = scope.slug = scope.track.name.toLowerCase()
           .replace(/ /g,'-')
           .replace(/[^\w-]+/g,'');
 
-        scope.playing = false;
-
-        scope.player.on('play', function() {
-          if (!scope.isCurrent()) {
-            scope.playing = false;
-            return;
-          }
-          scope.playing = true;
-        });
-
-        scope.player.on('pause', function() {
-          scope.playing = false;
-        });
-
         scope.seek = function($event) {
           var x = $event.x || $event.screenX;
           var rect = element[0].querySelector('.track').getClientRects()[0];
           var seekedTo = (x - rect.left) / (rect.right - rect.left);
-          scope.player.seek(scope.player.duration * seekedTo);
+          scope.track.audio.audio.currentTime = scope.track.audio.duration * seekedTo;
         };
 
         scope.loaded = function() {
-          return (scope.player.loadPercent || 0) + '%';
+          return (scope.track.loaded || 0) + '%';
         };
 
         scope.played = function() {
-          return ((scope.player.currentTime / scope.player.duration) || 0) * 100 + '%';
+          return ((scope.track.audio.currentTime / scope.track.audio.duration) || 0) * 100 + '%';
         };
 
-        scope.isCurrent = function() {
-          return scope.player.currentTrack === scope.i + 1;
+        scope.playing = function() {
+          return scope.i === ep.current.n && !ep.paused();
         };
 
-        scope.$watch('playing', function(playing) {
+        scope.$watch(scope.playing, function(playing) {
+          if (ep.current.n !== scope.i) { return; }
+
           if (playing) {
             $route.updateParams({play: scope.slug});
-          } else if (!playing && scope.isCurrent() && scope.player.loadPercent > 0) {
+          } else if (!playing) {
             $route.updateParams({play: undefined});
           }
         });
@@ -69,34 +58,25 @@ angular.module('unbeschriebenEpApp')
         };
 
         scope.playPause = function() {
-          if (scope.isCurrent()) {
-            scope.player.playPause();
+          if (ep.current.n === scope.i) {
+             ep.playPause();
           } else {
-            scope.player.play(scope.i);
+            scope.play();
           }
         };
 
-        scope.getState = function() {
-          if (scope.playing) {
-            return scope.STATE_PLAYING;
-          }
-          if (scope.isOpen) {
-            return scope.STATE_OPEN;
-          } else {
-            return scope.STATE_CLOSED;
-          }
+        scope.play = function() {
+          ep.skip(scope.i);
+          ep.play();
         };
 
-        scope.STATE_CLOSED = 0;
-        scope.STATE_OPEN = 1;
-        scope.STATE_PLAYING = 2;
-
-        scope.$watch(function() { return $routeParams.play; }, function(slug) {
+        var once = scope.$watch(function() { return $routeParams.play; }, function(slug) {
           if (slug === scope.slug) {
             scope.open();
-            if (!scope.playing) {
-              scope.playPause();
+            if (!scope.playing()) {
+              scope.play();
             }
+            once();
           }
         });
       }

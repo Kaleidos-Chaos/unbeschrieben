@@ -7,13 +7,14 @@
 
       <div class="cta"><div id="become-sticky"></div></div>
     </header>
+
     <div ng-if="download" class="download-dialog">
       <ng-include src="'views/download.html'"></ng-include>
     </div>
-    <track ng-repeat="track in ep" data="track" player="epPlayer"></track>
-    <div class="bandfoto"></div>
-    <audio media-player="epPlayer" playlist="ep">
-    </audio>
+    <videogular class="videogular-container audio">
+      <vg-media vg-src="player.sources" vg-type="audio"></vg-media>
+    </videogular>
+    <track ng-repeat="track in ep.playlist" data="track" player="things.player"></track>
 
     <div class="footer">
       <ng-include src="'views/footer.html'"></ng-include>

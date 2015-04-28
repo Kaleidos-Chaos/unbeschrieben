@@ -1,11 +1,11 @@
 <button
   class="interactive miniplayer"
   ng-class="{
-    'icon-play': !playing,
-    'icon-pause': playing
+    'icon-play': !playing(),
+    'icon-pause': playing()
   }"
   title="{{
-    playing ? 'Anhalten' : 'Abspielen'
+    playing() ? 'Anhalten' : 'Abspielen'
   }}"
   ng-click="playPause()"
 ></button>

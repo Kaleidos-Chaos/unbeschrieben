@@ -47,11 +47,7 @@ angular.module('unbeschriebenEpApp')
       });
     });
 
-    $scope.playIfPause = function() {
-      if (!$scope.epPlayer.playing) {
-        $scope.epPlayer.play();
-      }
-    };
+    $scope.playIfPause = ep.play;
 
     $scope.getCoverWidth = function() {
       var cover = document.getElementsByClassName('cover_img')[0];
