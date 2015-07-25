@@ -53,8 +53,4 @@ angular.module('unbeschriebenEpApp')
       var cover = document.getElementsByClassName('cover_img')[0];
       return Math.ceil(cover.offsetWidth / 50) * 50;
     };
-
-    $scope.validPw = function() {
-      return $scope.pw.text === 'ein bisschen weiter';
-    };
   });
