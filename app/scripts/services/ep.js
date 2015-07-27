@@ -10,7 +10,7 @@
 angular.module('unbeschriebenEpApp')
   .factory('ep', function (ngAudio, ngAudioGlobals) {
 
-    ngAudioGlobals.unlock = false;
+    ngAudioGlobals.unlock = true;
 
     var ep = {};
     ep.current = { n: -1 };
