@@ -29,10 +29,16 @@ angular
     $locationProvider.html5Mode(true);
   })
   .run(function($rootScope) {
+    var pixelRatio = window.devicePixelRatio || 1;
     $rootScope.getBackground = function() {
+      var width = Math.ceil(window.innerWidth / 100) * 100;
+      var height = Math.ceil(window.innerHeight / 100) * 100;
+
       return {
+        'background-size': width + 'px ' + height + 'px',
         'background-image': 'url("http://res.cloudinary.com/xiphe/image/upload/w_' +
-        Math.ceil(window.innerWidth / 100) * 100 + ',h_' + Math.ceil(window.innerHeight / 100) * 100 + ',c_fill,q_80/bg_xrqytx.jpg")'
+        width * pixelRatio + ',h_' + height * pixelRatio +
+        ',c_fill,q_80/bg_xrqytx.jpg")'
       };
     };
     $rootScope.getFooterBg = function() {
@@ -40,10 +46,13 @@ angular
       if (!footer) {
         return false;
       }
+      var width = Math.ceil(footer.offsetWidth / 100) * 100;
+      var height = Math.ceil(footer.offsetHeight / 100) * 100;
 
       return {
+        'background-size': width + 'px ' + height + 'px',
         'background-image': 'url("http://res.cloudinary.com/xiphe/image/upload/w_' +
-        Math.ceil(footer.offsetWidth / 100) * 100 + ',h_' + Math.ceil(footer.offsetHeight / 100) * 100 + ',c_fill,q_80/true_n7lfap.jpg")'
+        width * pixelRatio + ',h_' + height * pixelRatio + ',c_fill,q_80/true_n7lfap.jpg")'
       };
     };
   });

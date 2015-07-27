@@ -22,7 +22,7 @@ angular.module('unbeschriebenEpApp')
         var scrollDiff;
 
         scope.getWidth = function() {
-          return Math.ceil(element[0].offsetWidth / 50) * 50;
+          return Math.ceil(element[0].offsetWidth / 50) * 50 * window.devicePixelRatio || 1;
         };
 
         function setRects() {

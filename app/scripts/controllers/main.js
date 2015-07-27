@@ -51,6 +51,6 @@ angular.module('unbeschriebenEpApp')
 
     $scope.getCoverWidth = function() {
       var cover = document.getElementsByClassName('cover_img')[0];
-      return Math.ceil(cover.offsetWidth / 50) * 50;
+      return Math.ceil(cover.offsetWidth / 50) * 50 * window.devicePixelRatio || 1;
     };
   });
