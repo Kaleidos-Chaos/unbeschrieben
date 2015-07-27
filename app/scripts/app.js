@@ -22,6 +22,10 @@ angular
         controller: 'MainCtrl',
         reloadOnSearch: false
       })
+      .when('/impressum', {
+        templateUrl: 'views/impressum.html',
+        controller: 'AboutCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
