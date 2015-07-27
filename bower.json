@@ -2,16 +2,16 @@
   "name": "unbeschrieben-ep",
   "version": "0.0.0",
   "dependencies": {
-    "angular": "^1.3.0",
+    "angular": "^1.4.3",
     "json3": "^3.3.0",
     "angular-aria": "^1.3.0",
     "angular-route": "^1.3.0",
     "ngSticky": "~1.7.9",
-    "angular-audio": "~1.6.2"
+    "angular-audio": "~1.7.0"
   },
   "devDependencies": {
-    "angular-mocks": "~1.3.0",
-    "angular-scenario": "~1.3.0"
+    "angular-mocks": "~1.4.3",
+    "angular-scenario": "~1.4.3"
   },
   "appPath": "app",
   "resolutions": {
