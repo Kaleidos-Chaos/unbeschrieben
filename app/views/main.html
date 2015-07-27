@@ -10,9 +10,7 @@
   <div ng-if="download" class="download-dialog">
     <ng-include src="'views/download.html'"></ng-include>
   </div>
-  <videogular class="videogular-container audio">
-    <vg-media vg-src="player.sources" vg-type="audio"></vg-media>
-  </videogular>
+
   <track ng-repeat="track in ep.playlist" data="track" player="things.player"></track>
 
   <div class="footer">
