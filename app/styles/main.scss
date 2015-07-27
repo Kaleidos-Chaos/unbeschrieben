@@ -34,14 +34,20 @@ $background_played: rgba($beige, .8);
 /* Space out content a bit */
 body {
   font-family: 'Lato', sans-serif;
-  background-color: $black;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
   padding-top: 20px;
   color: #fff;
   margin: 0;
+}
+
+.fixebg {
+  top: 0px;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  z-index: 0;
+  background-color: $black;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 
 .clear {
@@ -50,6 +56,8 @@ body {
 }
 
 .container {
+  position: relative;
+  z-index: 1;
   margin: 0 auto;
 }
 
@@ -341,10 +349,9 @@ a, .interactive {
   }
 
 footer.main {
+  position: relative;
   color: $black_blue;
   text-shadow: 0 0 5px rgba($beige, 0.2);
-  background: $beige center center no-repeat;
-  background-attachment: fixed;
   padding: 2rem;
   box-shadow: 0 0 150px $brown inset, 0 0 50px rgba($black_blue, 0.5);
   p {
