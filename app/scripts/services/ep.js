@@ -93,6 +93,19 @@ angular.module('unbeschriebenEpApp')
 
       if (ep.current.n !== n) {
         var paused = ep.paused();
+        if (ep.current.n >= 0 && !paused) {
+          var track = ep.playlist[ep.current.n];
+          var played = Math.round(((track.audio.currentTime / track.audio.duration) || 0) * 10) * 10;
+
+          if (played < 90) {
+            window._gaq.push([
+              '_trackEvent',
+              ep.playlist[ep.current.n].name,
+              'skipped at ' + played + '%'
+            ]);
+          }
+        }
+
         ep.stop();
 
         ep.current.n = n;
@@ -118,6 +131,7 @@ angular.module('unbeschriebenEpApp')
 
     ep.play = function() {
       if (ep.paused()) {
+        window._gaq.push(['_trackEvent', ep.playlist[ep.current.n].name, 'play']);
         ep.playlist[ep.current.n].audio.play();
       }
     };
