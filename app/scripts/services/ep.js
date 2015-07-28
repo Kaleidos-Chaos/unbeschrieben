@@ -61,6 +61,10 @@ angular.module('unbeschriebenEpApp')
           angular.isFunction(track.audio.play)
         ) {
           var audio = track.audio.audio;
+          audio.onended = function() {
+            ep.next();
+            ep.play();
+          };
 
           var pIvl = setInterval(function() {
             try {
