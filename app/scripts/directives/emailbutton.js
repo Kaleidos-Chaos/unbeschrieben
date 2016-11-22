@@ -22,7 +22,7 @@ angular.module('unbeschriebenEpApp')
         });
 
         scope.go = function() {
-          $http.post('http://unbeschrieben-download.diem-musik.de/subscribe', {email: scope.email.address}).then(function() {
+          $http.post('http://unbeschrieben-download.hannesdiem.de/subscribe', {email: scope.email.address}).then(function() {
             scope.email.address = '';
           });
         };
