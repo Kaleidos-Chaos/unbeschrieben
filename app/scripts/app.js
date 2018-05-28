@@ -40,7 +40,7 @@ angular
 
       return {
         'background-size': width + 'px ' + height + 'px',
-        'background-image': 'url("http://res.cloudinary.com/xiphe/image/upload/w_' +
+        'background-image': 'url("https://res.cloudinary.com/xiphe/image/upload/w_' +
         width * pixelRatio + ',h_' + height * pixelRatio +
         ',c_fill,q_80/bg_xrqytx.jpg")'
       };
@@ -55,7 +55,7 @@ angular
 
       return {
         'background-size': width + 'px ' + height + 'px',
-        'background-image': 'url("http://res.cloudinary.com/xiphe/image/upload/w_' +
+        'background-image': 'url("https://res.cloudinary.com/xiphe/image/upload/w_' +
         width * pixelRatio + ',h_' + height * pixelRatio + ',c_fill,q_80/true_n7lfap.jpg")'
       };
     };
